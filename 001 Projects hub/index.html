@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Project Hub</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #0f1115;
+        color: #e8ebf3;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Arial, sans-serif;
+        padding: 2rem 1rem;
+      }
+
+      .wrap {
+        width: min(900px, 95vw);
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .sub {
+        color: #aeb6c8;
+        margin-bottom: 1.3rem;
+      }
+
+      .hint {
+        background: #171b24;
+        border: 1px solid #2c3344;
+        border-radius: 12px;
+        padding: 0.85rem 1rem;
+        margin-bottom: 1.2rem;
+        color: #cad1df;
+        font-size: 0.93rem;
+      }
+
+      .projects {
+        list-style: none;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .card {
+        border: 1px solid #2b3242;
+        background: #171b24;
+        border-radius: 14px;
+        padding: 1rem;
+      }
+
+      .card h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .card p {
+        color: #b6bece;
+        margin-bottom: 0.7rem;
+      }
+
+      .card a {
+        display: inline-block;
+        text-decoration: none;
+        color: #141821;
+        background: #80b6ff;
+        padding: 0.45rem 0.7rem;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      .card a:hover {
+        filter: brightness(1.06);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>My Projects</h1>
+
+      <ul id="project-list" class="projects"></ul>
+    </main>
+
+    <script>
+      // Add future projects here.
+      const projects = [
+        {
+          title: "Static Webpage",
+          description: "Static site project.",
+          href: "../002 Static Webpage/v2/index.html",
+        },
+        {
+          title: "Calculator",
+          description: "JS calculator.",
+          href: "../003 Calculator/index.html",
+        },
+        {
+          title: "Guess The Number",
+          description: "Number guessing game with feedback and history.",
+          href: "../006 Guess The Number/index.html",
+        },
+      ];
+
+      const list = document.getElementById("project-list");
+
+      projects.forEach((project) => {
+        const li = document.createElement("li");
+        li.className = "card";
+        li.innerHTML = `
+          <h2>${project.title}</h2>
+          <p>${project.description}</p>
+          <a href="${project.href}">Open Project</a>
+        `;
+        list.appendChild(li);
+      });
+    </script>
+  </body>
+</html>
