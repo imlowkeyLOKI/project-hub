@@ -68,6 +68,28 @@
         margin-bottom: 0.7rem;
       }
 
+      .hook {
+        color: #d7deec;
+        margin-bottom: 0.65rem;
+        font-size: 0.95rem;
+      }
+
+      .feature-list {
+        margin: 0 0 0.9rem 1.1rem;
+        color: #b6bece;
+        display: grid;
+        gap: 0.35rem;
+        font-size: 0.9rem;
+      }
+
+      .feature-list li {
+        line-height: 1.35;
+      }
+
+      .feature-list strong {
+        color: #eaf2ff;
+      }
+
       .card a {
         display: inline-block;
         text-decoration: none;
@@ -95,17 +117,32 @@
       const projects = [
         {
           title: "Static Webpage",
-          description: "Static site project.",
+          hook: "A simple website built with HTML and CSS.",
+          features: [
+            "It has multiple pages linked together.",
+            "The same styles are reused across pages.",
+            "It stays readable on different screen sizes.",
+          ],
           href: "./002 Static Webpage/v2/index.html",
         },
         {
           title: "Calculator",
-          description: "JS calculator.",
+          hook: "A calculator made with JavaScript logic.",
+          features: [
+            "It follows <strong>PEMDAS</strong> so operations run in the correct order.",
+            "It supports decimal, percent, sign change, and backspace.",
+            "It saves your last answer so you can reuse it.",
+          ],
           href: "./003 Calculator/index.html",
         },
         {
           title: "Guess The Number",
-          description: "Number guessing game with feedback and history.",
+          hook: "A fun number game with friendly hints.",
+          features: [
+            "Pick a number and the game tells you: too high or too low.",
+            "You get 10 tries, so every guess feels like a mini challenge.",
+            "If you go outside the range, the game helps you get back on track.",
+          ],
           href: "./006 Guess The Number/index.html",
         },
       ];
@@ -115,9 +152,13 @@
       projects.forEach((project) => {
         const li = document.createElement("li");
         li.className = "card";
+        const featuresHtml = project.features
+          .map((feature) => `<li>${feature}</li>`)
+          .join("");
         li.innerHTML = `
           <h2>${project.title}</h2>
-          <p>${project.description}</p>
+          <p class="hook">${project.hook}</p>
+          <ul class="feature-list">${featuresHtml}</ul>
           <a href="${project.href}">Open Project</a>
         `;
         list.appendChild(li);

@@ -23,15 +23,10 @@ let gameOver = false;
 let lowBound = MIN;
 let highBound = MAX;
 
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function setFeedback(message, tone = "neutral") {
   feedbackEl.textContent = message;
   feedbackEl.className = `feedback feedback-${tone}`;
 
-  // Re-trigger animation each time message changes.
   feedbackEl.classList.remove("feedback-pop");
   void feedbackEl.offsetWidth;
   feedbackEl.classList.add("feedback-pop");
@@ -54,7 +49,7 @@ function updateGuessesUI() {
 }
 
 function renderHistory() {
-  historyEl.innerHTML = "";
+  historyEl.replaceChildren();
 
   history.forEach((entry) => {
     const li = document.createElement("li");
@@ -91,7 +86,7 @@ function endGame(message, tone) {
 }
 
 function resetGame() {
-  secretNumber = randomInt(MIN, MAX);
+  secretNumber = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN;
   remainingGuesses = MAX_GUESSES;
   history = [];
   gameOver = false;
@@ -108,9 +103,6 @@ function resetGame() {
   restartBtn.textContent = "Restart";
   input.value = "";
   input.focus();
-
-  // Dev-only: remove after testing.
-  console.log("Secret number:", secretNumber);
 }
 
 function validateGuess(rawValue) {
@@ -120,7 +112,8 @@ function validateGuess(rawValue) {
   if (!raw) return "Enter a number from 1 to 100.";
   if (!Number.isFinite(guess)) return "That is not a valid number.";
   if (!Number.isInteger(guess)) return "Enter a whole number (no decimals).";
-  if (guess < MIN || guess > MAX) return "Your guess must be between 1 and 100.";
+  if (guess < MIN || guess > MAX)
+    return "Your guess must be between 1 and 100.";
   if (history.some((entry) => entry.value === guess)) {
     return `You already guessed ${guess}. Try a new number.`;
   }
