@@ -1,3 +1,4 @@
+// % feature still not working
 let current = "0";
 let tokens = [];
 let justCalculated = false;
@@ -19,7 +20,6 @@ function cleanNum(val) {
 function getDisplayText() {
   let displayVal = current;
 
-  // handle percent display
   if (showAsPercent && Number.isFinite(Number(current))) {
     displayVal = cleanNum(String(Number(current) * 100)) + "%";
   }
@@ -47,7 +47,6 @@ function update() {
 function calculate(expr) {
   const stack = [];
 
-  // handle multiplication/division first
   for (let i = 0; i < expr.length; i++) {
     const tok = expr[i];
     if (tok === "*" || tok === "/") {
@@ -59,7 +58,6 @@ function calculate(expr) {
     }
   }
 
-  // then addition/subtraction
   let result = Number(stack[0]);
   for (let i = 1; i < stack.length; i += 2) {
     const op = stack[i];
@@ -96,7 +94,6 @@ function equals() {
 }
 
 function addOperator(op) {
-  // replace last operator if we just typed one
   if (tokens.length > 0 && isOp(tokens[tokens.length - 1]) && current === "0") {
     tokens[tokens.length - 1] = op;
     update();

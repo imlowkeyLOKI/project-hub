@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Current Time</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="time-card" aria-live="polite">
+        <h1>Current Time</h1>
+        <p class="subtitle">Your local clock updates every second.</p>
+
+        <div class="info-row">
+          <span class="label">Time Zone</span>
+          <span class="value" id="timezone"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Current Time</span>
+          <span class="value" id="time"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Current Date</span>
+          <span class="value" id="date"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Day of Week</span>
+          <span class="value" id="day"></span>
+        </div>
+        <div class="actions">
+          <button
+            id="open-timezone-modal"
+            class="change-zone-btn"
+            type="button"
+            data-micromodal-trigger="timezone-modal"
+            aria-controls="timezone-modal"
+          >
+            Change Time Zone
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal micromodal-slide" id="timezone-modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="timezone-modal-title"
+        >
+          <header class="modal__header">
+            <h2 class="modal__title" id="timezone-modal-title">
+              Select a Time Zone
+            </h2>
+            <button
+              class="modal__close"
+              aria-label="Close time zone selector"
+              data-micromodal-close
+            ></button>
+          </header>
+
+          <main class="modal__content" id="timezone-modal-content">
+            <label class="modal-label" for="timezone-select">Time Zone</label>
+            <select id="timezone-select" class="timezone-select">
+              <option value="">Use Browser Default</option>
+              <option value="America/New_York">America/New_York</option>
+              <option value="America/Chicago">America/Chicago</option>
+              <option value="America/Denver">America/Denver</option>
+              <option value="America/Los_Angeles">America/Los_Angeles</option>
+              <option value="America/Anchorage">America/Anchorage</option>
+              <option value="Pacific/Honolulu">Pacific/Honolulu</option>
+              <option value="Europe/London">Europe/London</option>
+              <option value="Europe/Paris">Europe/Paris</option>
+              <option value="Asia/Tokyo">Asia/Tokyo</option>
+            </select>
+          </main>
+
+          <footer class="modal__footer">
+            <button
+              class="modal-btn modal-btn--secondary"
+              type="button"
+              data-micromodal-close
+            >
+              Cancel
+            </button>
+            <button
+              class="modal-btn modal-btn--primary"
+              id="save-timezone"
+              type="button"
+            >
+              Save Time Zone
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.19/dayjs.min.js"></script>
+    <script src="./node_modules/micromodal/dist/micromodal.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

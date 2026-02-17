@@ -1,3 +1,5 @@
+// need to add drop down for cities to ensure accuracy
+
 const weatherForm = document.getElementById("weather-form");
 const cityInput = document.getElementById("city-input");
 const weatherResult = document.getElementById("form-message");
