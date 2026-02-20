@@ -1,6 +1,10 @@
+// need to update day of week and date when timezone is changed
+
 let currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-MicroModal.init();
+if (typeof MicroModal !== "undefined") {
+  MicroModal.init();
+}
 const timeEl = document.getElementById("time");
 const timezoneEl = document.getElementById("timezone");
 const dateEl = document.getElementById("date");
@@ -32,6 +36,8 @@ saveTimeZoneBtn.addEventListener("click", function () {
   currentTimeZone =
     selectedTimeZone || Intl.DateTimeFormat().resolvedOptions().timeZone;
   timezoneEl.textContent = currentTimeZone;
-  MicroModal.close("timezone-modal");
+  if (typeof MicroModal !== "undefined") {
+    MicroModal.close("timezone-modal");
+  }
   updateTime();
 });

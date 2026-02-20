@@ -7,130 +7,73 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <main class="weather-app">
-      <header class="app-header">
-        <p class="kicker">Forecast Dashboard</p>
-        <h1>Weather App</h1>
-        <p class="subtitle">
-          Search any city to view current conditions and a short forecast.
-        </p>
-      </header>
+    <main class="app">
+      <form id="weather-form" class="search-bar" novalidate>
+        <label for="city-input" class="sr-only">City name</label>
+        <input
+          id="city-input"
+          name="city"
+          type="text"
+          placeholder="Search a city..."
+          autocomplete="on"
+          required
+        />
+        <button id="search-btn" type="submit">Go</button>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+      </form>
 
-      <section class="search-panel" aria-label="Search weather">
-        <form id="weather-form" class="weather-form" novalidate>
-          <label for="city-input">City name</label>
-          <div class="input-row">
-            <input
-              id="city-input"
-              name="city"
-              type="text"
-              placeholder="e.g. Chicago"
-              autocomplete="on"
-              required
-            />
-            <button id="search-btn" type="submit">Search</button>
+      <div class="split">
+        <section class="primary" aria-live="polite">
+          <h1 id="city-name" class="city">City Name</h1>
+          <p id="weather-time" class="time">--:--</p>
+          <p class="temp">
+            <span id="temp-value" class="temp-number">--</span><span class="temp-unit">°F</span>
+          </p>
+          <p id="weather-description" class="condition">Condition</p>
+          <p class="hi-lo">
+            H: <span id="temp-high">--</span>°
+            <span class="sep">/</span>
+            L: <span id="temp-low">--</span>°
+          </p>
+        </section>
+
+        <aside class="secondary">
+          <div class="stat">
+            <span class="stat-label">Feels Like</span>
+            <span class="stat-value"><span id="feels-like">--</span>°F</span>
           </div>
-          <p id="form-message" class="form-message" aria-live="polite"></p>
-        </form>
-      </section>
-
-      <section id="weather-card" class="weather-card" aria-live="polite">
-        <div class="weather-card-head">
-          <div>
-            <h2 id="city-name">City Name</h2>
-            <p id="weather-time">Time</p>
+          <div class="stat">
+            <span class="stat-label">Humidity</span>
+            <span class="stat-value"><span id="humidity">--</span>%</span>
           </div>
-          <img
-            id="weather-icon"
-            src="https://openweathermap.org/img/wn/01d@2x.png"
-            alt="Weather icon"
-          />
-        </div>
-
-        <div class="temperature-row">
-          <div class="temperature-block">
-            <p class="temperature">
-              <span id="temp-value">--</span><span class="unit">°F</span>
-            </p>
-            <p class="temp-range">
-              H: <span id="temp-high">--</span>°F
-              <span class="range-separator">|</span>
-              L: <span id="temp-low">--</span>°F
-            </p>
+          <div class="stat">
+            <span class="stat-label">Wind</span>
+            <span class="stat-value"><span id="wind-speed">--</span> mph</span>
           </div>
-          <p id="weather-description" class="description">Condition</p>
-        </div>
+          <div class="stat">
+            <span class="stat-label">Pressure</span>
+            <span class="stat-value"><span id="pressure">--</span> hPa</span>
+          </div>
 
-        <div class="stats-grid">
-          <article class="stat-box">
-            <h3>Feels Like</h3>
-            <p><span id="feels-like">--</span>°F</p>
-          </article>
-          <article class="stat-box">
-            <h3>Humidity</h3>
-            <p><span id="humidity">--</span>%</p>
-          </article>
-          <article class="stat-box">
-            <h3>Wind</h3>
-            <p><span id="wind-speed">--</span> km/h</p>
-          </article>
-          <article class="stat-box">
-            <h3>Pressure</h3>
-            <p><span id="pressure">--</span> hPa</p>
-          </article>
-        </div>
-      </section>
+          <h2 class="forecast-heading">3-Day Forecast</h2>
 
-      <section class="forecast-panel" aria-label="3-day forecast">
-        <h2>3-Day Forecast</h2>
-        <div id="forecast-list" class="forecast-list">
-          <article id="forecast-1" class="forecast-item">
-            <p class="forecast-day">Day</p>
-            <img
-              src="https://openweathermap.org/img/wn/01d@2x.png"
-              alt="Forecast icon"
-            />
-            <div class="forecast-temps">
-              <p class="forecast-temp-high">
-                H: <span id="forecast-high-1" class="temp-high">--</span>°F
-              </p>
-              <p class="forecast-temp-low">
-                L: <span id="forecast-low-1" class="temp-low">--</span>°F
-              </p>
-            </div>
-          </article>
-          <article id="forecast-2" class="forecast-item">
-            <p class="forecast-day">Day</p>
-            <img
-              src="https://openweathermap.org/img/wn/01d@2x.png"
-              alt="Forecast icon"
-            />
-            <div class="forecast-temps">
-              <p class="forecast-temp-high">
-                H: <span id="forecast-high-2" class="temp-high">--</span>°F
-              </p>
-              <p class="forecast-temp-low">
-                L: <span id="forecast-low-2" class="temp-low">--</span>°F
-              </p>
-            </div>
-          </article>
-          <article id="forecast-3" class="forecast-item">
-            <p class="forecast-day">Day</p>
-            <img
-              src="https://openweathermap.org/img/wn/01d@2x.png"
-              alt="Forecast icon"
-            />
-            <div class="forecast-temps">
-              <p class="forecast-temp-high">
-                H: <span id="forecast-high-3" class="temp-high">--</span>°F
-              </p>
-              <p class="forecast-temp-low">
-                L: <span id="forecast-low-3" class="temp-low">--</span>°F
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
+          <div id="forecast-1" class="forecast-row">
+            <span class="forecast-day">Day</span>
+            <span class="forecast-hi">H: <span id="forecast-high-1">--</span>°</span>
+            <span class="forecast-lo">L: <span id="forecast-low-1">--</span>°</span>
+          </div>
+          <div id="forecast-2" class="forecast-row">
+            <span class="forecast-day">Day</span>
+            <span class="forecast-hi">H: <span id="forecast-high-2">--</span>°</span>
+            <span class="forecast-lo">L: <span id="forecast-low-2">--</span>°</span>
+          </div>
+          <div id="forecast-3" class="forecast-row">
+            <span class="forecast-day">Day</span>
+            <span class="forecast-hi">H: <span id="forecast-high-3">--</span>°</span>
+            <span class="forecast-lo">L: <span id="forecast-low-3">--</span>°</span>
+          </div>
+        </aside>
+      </div>
     </main>
 
     <script src="app.js"></script>

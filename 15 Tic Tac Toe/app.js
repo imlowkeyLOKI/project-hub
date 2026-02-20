@@ -1,10 +1,3 @@
-/* 
-12 Features to add:
-    1. add a way to switch who goes first in the next game
-    3. score board
-    4. score board reset button
-*/
-
 const boardEl = document.querySelector(".board");
 const messageEl = document.getElementById("player-message");
 const winPatterns = [
@@ -31,6 +24,13 @@ function setMessage() {
 }
 
 setMessage();
+
+boardEl.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    event.target.click();
+  }
+});
 
 boardEl.addEventListener("click", function (event) {
   const cellEl = event.target;

@@ -27,22 +27,13 @@
 
       h1 {
         font-size: clamp(1.8rem, 3vw, 2.4rem);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
       }
 
-      .sub {
-        color: #aeb6c8;
-        margin-bottom: 1.3rem;
-      }
-
-      .hint {
-        background: #171b24;
-        border: 1px solid #2c3344;
-        border-radius: 12px;
-        padding: 0.85rem 1rem;
-        margin-bottom: 1.2rem;
-        color: #cad1df;
-        font-size: 0.93rem;
+      .page-subtitle {
+        color: #6b7689;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
       }
 
       .projects {
@@ -53,13 +44,31 @@
 
       .card {
         border: 1px solid #2b3242;
+        border-left: 3px solid #3d4a5e;
         background: #171b24;
-        border-radius: 14px;
-        padding: 1rem;
+        border-radius: 6px;
+        padding: 1.1rem 1.2rem;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+        position: relative;
+      }
+
+      .card:hover {
+        border-left-color: #e8ebf3;
+        transform: translateX(4px);
+      }
+
+      .card-number {
+        position: absolute;
+        top: 1rem;
+        right: 1.2rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #2b3242;
+        letter-spacing: 0.05em;
       }
 
       .card h2 {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         margin-bottom: 0.35rem;
       }
 
@@ -91,23 +100,33 @@
       }
 
       .card a {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
         text-decoration: none;
-        color: #141821;
-        background: #80b6ff;
-        padding: 0.45rem 0.7rem;
-        border-radius: 10px;
+        color: #b6bece;
+        font-size: 0.85rem;
         font-weight: 600;
+        padding: 0.35rem 0;
+        border-bottom: 1px solid #2b3242;
+        transition: color 0.15s ease, border-color 0.15s ease;
       }
 
-      .card a:hover {
-        filter: brightness(1.06);
+      .card a:hover,
+      .card:hover a {
+        color: #e8ebf3;
+        border-color: #e8ebf3;
+      }
+
+      .card a::after {
+        content: "\2192";
       }
     </style>
   </head>
   <body>
     <main class="wrap">
       <h1>My Projects</h1>
+      <p class="page-subtitle" id="project-count"></p>
 
       <ul id="project-list" class="projects"></ul>
     </main>
@@ -184,17 +203,31 @@
           ],
           href: "./17 Current time/index.html",
         },
+        {
+          title: "To-Do List",
+          hook: "A terminal-styled to-do app built with React and Tailwind.",
+          features: [
+            "Add tasks with a command-line-style input bar.",
+            "Edit any task inline and save with <strong>Enter</strong>.",
+            "Delete tasks with a single click — edit and delete buttons appear on hover.",
+          ],
+          href: "./18 to-do lists/dist/index.html",
+        },
       ];
 
       const list = document.getElementById("project-list");
+      document.getElementById("project-count").textContent =
+        projects.length + " projects";
 
-      projects.forEach((project) => {
+      projects.forEach((project, i) => {
         const li = document.createElement("li");
         li.className = "card";
+        const num = String(i + 1).padStart(2, "0");
         const featuresHtml = project.features
           .map((feature) => `<li>${feature}</li>`)
           .join("");
         li.innerHTML = `
+          <span class="card-number">${num}</span>
           <h2>${project.title}</h2>
           <p class="hook">${project.hook}</p>
           <ul class="feature-list">${featuresHtml}</ul>
