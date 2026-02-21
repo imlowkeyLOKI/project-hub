@@ -80,28 +80,6 @@ body::after {
   overflow: hidden;
 }
 
-.game.sudden-death {
-  background:
-    radial-gradient(circle at 16% 0%, rgba(255, 120, 120, 0.14), transparent 42%),
-    linear-gradient(165deg, rgba(58, 17, 29, 0.94) 0%, rgba(45, 13, 22, 0.95) 100%);
-  border-color: #6a3a5a;
-  box-shadow:
-    0 24px 45px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 118, 118, 0.25),
-    0 0 28px rgba(255, 70, 90, 0.22),
-    inset 0 1px 0 rgba(255, 210, 210, 0.08);
-}
-
-.game.sudden-death .guesses-panel,
-.game.sudden-death .range-panel,
-.game.sudden-death .history {
-  border-color: #8f3f4b;
-}
-
-.game.sudden-death .feedback {
-  text-shadow: 0 0 18px rgba(255, 95, 110, 0.45);
-}
-
 .game > :not([hidden]) + :not([hidden]) {
   margin-top: 0.62rem;
 }
@@ -159,7 +137,6 @@ body::after {
   font-size: 0.96rem;
   line-height: 1.35;
   margin-bottom: 0.6rem;
-  opacity: 0.96;
 }
 
 .hero-goal strong {
@@ -193,7 +170,6 @@ body::after {
   color: #c9cfdb;
   font-weight: 600;
   letter-spacing: 0.01em;
-  opacity: 0.95;
 }
 
 .controls {
@@ -281,7 +257,6 @@ button:disabled {
   gap: 0.62rem;
   border-left: 4px solid #4cc9f0;
   padding-left: 0.45rem;
-  transition: border-color 0.3s ease;
 }
 
 .feedback {
@@ -520,268 +495,6 @@ button:disabled {
   z-index: 1;
 }
 
-.game.sudden-death .range-progress-bar {
-  height: 56px;
-  border-radius: 26px;
-  border-color: #663042;
-  box-shadow:
-    inset 0 0 20px rgba(0, 0, 0, 0.95),
-    0 0 18px rgba(255, 85, 115, 0.26);
-  transition:
-    height 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 220ms ease,
-    border-color 220ms ease;
-}
-
-.game.sudden-death .range-window {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 107, 107, 0.85) 0%,
-    rgba(180, 33, 64, 0.86) 100%
-  );
-  border-left-color: #ff9e9e;
-  border-right-color: #ff9e9e;
-  box-shadow:
-    0 0 20px rgba(255, 90, 90, 0.34),
-    inset 0 0 8px rgba(255, 220, 220, 0.14);
-  transition:
-    left 280ms ease,
-    width 280ms ease,
-    box-shadow 200ms ease,
-    border-color 200ms ease;
-  animation:
-    waveMotion 1.7s linear infinite,
-    waterShimmer 2.6s linear infinite;
-}
-
-.game.sudden-death .shark-head {
-  filter:
-    drop-shadow(0 0 5px rgba(255, 94, 94, 0.45))
-    drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-  animation-name: sharkSnap;
-  animation-timing-function: steps(2, end);
-}
-
-.game.sudden-death .shark-head-right {
-  animation-name: sharkSnapRight;
-}
-
-.game.sudden-death .range-stickman {
-  animation-name: drowningPanic;
-  animation-timing-function: linear;
-  filter:
-    drop-shadow(0 0 3px rgba(255, 175, 175, 0.4))
-    drop-shadow(0 0 2px rgba(0, 0, 0, 0.45));
-}
-
-.game.sudden-death .hero {
-  border-color: #8a3547;
-  background:
-    radial-gradient(circle at 10% 0%, rgba(255, 158, 158, 0.18), transparent 55%),
-    linear-gradient(150deg, #3a111d 0%, #4b1626 100%);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 180, 180, 0.14),
-    0 0 22px rgba(255, 82, 82, 0.2);
-}
-
-.game.sudden-death .eyebrow {
-  color: #d5a1ac;
-  text-shadow: 0 0 10px rgba(255, 118, 118, 0.24);
-}
-
-.game.sudden-death .hero h1 {
-  text-shadow:
-    0 0 16px rgba(255, 116, 116, 0.35),
-    0 0 1px rgba(255, 255, 255, 0.6);
-}
-
-.game.sudden-death .hero-goal strong {
-  color: #ffabab;
-}
-
-.game.sudden-death .stage-zero-hud {
-  border-color: #8a3547;
-  background: linear-gradient(180deg, #4a1421 0%, #3f101b 100%);
-  color: #ffd2d2;
-}
-
-.game.sudden-death .stage-zero-hud span:last-child {
-  color: #ffb3b3;
-}
-
-.game.sudden-death input,
-.game.sudden-death button {
-  border-color: #693040;
-  background: #2a1019;
-}
-
-.game.sudden-death button {
-  background: #e94560;
-  border-bottom-color: #b22d42;
-  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
-}
-
-.game.sudden-death button:hover {
-  background: #ff5e78;
-  box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
-}
-
-.game.sudden-death #restart-btn {
-  background: #ff915c;
-  border-bottom-color: #b25d3a;
-  box-shadow: 0 4px 15px rgba(255, 145, 92, 0.34);
-}
-
-.game.sudden-death #restart-btn:hover {
-  background: #ffa877;
-  box-shadow: 0 6px 20px rgba(255, 145, 92, 0.45);
-}
-
-.game.sudden-death .status {
-  border-left-color: #ff6a6a;
-}
-
-.game.sudden-death .feedback-neutral {
-  background: rgba(255, 126, 126, 0.1);
-  text-shadow:
-    0 0 14px rgba(255, 128, 128, 0.32),
-    0 0 2px rgba(255, 255, 255, 0.5);
-}
-
-.game.sudden-death .meter-row {
-  color: #e1bdc5;
-}
-
-.game.sudden-death .guesses-panel {
-  border-color: #8a3b4d;
-  background: linear-gradient(180deg, #34101b 0%, #280c16 100%);
-}
-
-.game.sudden-death .guesses-left-progress-bar {
-  background: #2b141c;
-  border-color: #6b3542;
-}
-
-.game.sudden-death .range-panel {
-  padding: 1rem 0.8rem 0.95rem;
-  border-color: #8d4050;
-  background: linear-gradient(180deg, rgba(52, 16, 27, 0.92) 0%, rgba(40, 12, 22, 0.92) 100%);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 145, 145, 0.2),
-    0 0 26px rgba(255, 72, 96, 0.28);
-  opacity: 1;
-  filter: none;
-}
-
-.game.sudden-death .range-bounds {
-  color: #ffd3d3;
-  top: calc(100% + 0.08rem);
-}
-
-.game.sudden-death .range-zoom-cue {
-  color: #ffd6d6;
-  text-shadow: 0 0 10px rgba(255, 120, 120, 0.45);
-}
-
-.game.sudden-death .range-progress-shell {
-  transform: none;
-  transition: none;
-  animation: none;
-}
-
-.game.sudden-death .history h2 {
-  color: #ffb0be;
-}
-
-.game.sudden-death #guess-history li {
-  border-color: #6f3545;
-}
-
-.game.sudden-death .guess-low {
-  background: #3a2618;
-  border-color: #9a6542;
-  color: #ffd9b8;
-}
-
-.game.sudden-death .guess-high {
-  background: #3a2230;
-  border-color: #7c3f5a;
-  color: #ffc6d4;
-}
-
-.game.sudden-death .guess-correct {
-  background: #3a2a18;
-  border-color: #8b6a3f;
-  color: #ffe8c4;
-}
-
-.game.sudden-death .meter-fill {
-  background: linear-gradient(90deg, #ff5f73 0%, #ff9c5a 100%);
-}
-
-.game.sudden-death .feedback-low {
-  color: #ffd6a3;
-  text-shadow: 0 0 14px rgba(255, 173, 96, 0.4);
-}
-
-.game.sudden-death .feedback-high {
-  color: #ffadb4;
-  background: rgba(233, 69, 96, 0.14);
-  text-shadow: 0 0 14px rgba(255, 84, 106, 0.34);
-}
-
-.game.sudden-death .feedback-lose {
-  color: #ffd0a0;
-  background: rgba(255, 122, 66, 0.16);
-  text-shadow: 0 0 14px rgba(255, 149, 69, 0.35);
-}
-
-.game.sudden-death .input-error {
-  color: #ff9b9b;
-}
-
-.game.sudden-death .input-invalid {
-  border-color: #d35b67;
-}
-
-.game.sudden-death .achievements {
-  border-color: #8a4554;
-  background: rgba(52, 17, 28, 0.58);
-}
-
-.game.sudden-death .achievements summary {
-  color: #ffd1d6;
-}
-
-.game.sudden-death .achievement-count {
-  color: #ffb5c2;
-}
-
-.game.sudden-death .achievement-item {
-  border-color: rgba(172, 82, 102, 0.46);
-  background: rgba(76, 22, 36, 0.58);
-}
-
-.game.sudden-death .achievement-text {
-  color: #ffe2e6;
-}
-
-.game.sudden-death .hero,
-.game.sudden-death .guess-form,
-.game.sudden-death .guesses-panel,
-.game.sudden-death .history {
-  opacity: 0.58;
-  filter: saturate(0.72) brightness(0.86);
-  transition:
-    opacity 220ms ease,
-    filter 220ms ease;
-}
-
-body.zoom-crunch-bg {
-  background: linear-gradient(180deg, #1a0a0f 0%, #0d0508 100%);
-  --wave-stamp: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="40" viewBox="0 0 100 40"><path d="M0 25 Q 25 10 50 25 T 100 25" fill="none" stroke="%23ff6a6a" stroke-width="2" opacity="0.4"/></svg>');
-}
-
 @keyframes feedbackPulse {
   0%,
   100% {
@@ -856,34 +569,6 @@ body.zoom-crunch-bg {
   }
 }
 
-@keyframes sharkSnap {
-  0%,
-  100% {
-    transform: translateY(-50%) scale(var(--range-actor-scale));
-  }
-  35% {
-    transform: translateY(-51%) rotate(-10deg) scale(var(--range-actor-scale));
-  }
-  70% {
-    transform: translateY(-48%) rotate(6deg) scale(var(--range-actor-scale));
-  }
-}
-
-@keyframes sharkSnapRight {
-  0%,
-  100% {
-    transform: translateY(-50%) scaleX(-1) scale(var(--range-actor-scale));
-  }
-  35% {
-    transform: translateY(-51%) scaleX(-1) rotate(-10deg)
-      scale(var(--range-actor-scale));
-  }
-  70% {
-    transform: translateY(-48%) scaleX(-1) rotate(6deg)
-      scale(var(--range-actor-scale));
-  }
-}
-
 @keyframes drowningStruggle {
   0% {
     transform: translateY(1px) rotate(-4deg) scale(var(--range-actor-scale));
@@ -905,27 +590,6 @@ body.zoom-crunch-bg {
   }
   100% {
     transform: translateY(1px) rotate(-4deg) scale(var(--range-actor-scale));
-  }
-}
-
-@keyframes drowningPanic {
-  0% {
-    transform: translateY(2px) rotate(-11deg) scale(var(--range-actor-scale));
-  }
-  20% {
-    transform: translateY(-4px) rotate(14deg) scale(var(--range-actor-scale));
-  }
-  40% {
-    transform: translateY(4px) rotate(-13deg) scale(var(--range-actor-scale));
-  }
-  60% {
-    transform: translateY(-3px) rotate(15deg) scale(var(--range-actor-scale));
-  }
-  80% {
-    transform: translateY(3px) rotate(-10deg) scale(var(--range-actor-scale));
-  }
-  100% {
-    transform: translateY(2px) rotate(-11deg) scale(var(--range-actor-scale));
   }
 }
 

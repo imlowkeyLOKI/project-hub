@@ -11,7 +11,6 @@ const achievementsPanelEl = document.getElementById("achievements-panel");
 const restartBtn = document.getElementById("restart-btn");
 const gameOverMessageEl = document.getElementById("game-over-message");
 const heroEl = document.querySelector(".hero");
-const gameEl = document.querySelector(".game");
 const statusPanelEl = document.getElementById("status-panel");
 const guessesPanelEl = document.getElementById("guesses-panel");
 const historyPanelEl = document.getElementById("history-panel");
@@ -20,7 +19,6 @@ const rangeHighEl = document.getElementById("range-high");
 const rangeBoundsEl = document.getElementById("range-bounds");
 const rangeWindowEl = document.getElementById("range-window");
 const rangePanelEl = document.getElementById("range-panel");
-const rangeZoomCueEl = document.getElementById("range-zoom-cue");
 const rangeProgressBarEl = document.querySelector(".range-progress-bar");
 const submitBtn = form.querySelector('button[type="submit"]');
 
@@ -35,8 +33,6 @@ let gameOver = false;
 let lowBound = MIN;
 let highBound = MAX;
 let formRevealTimeoutId = null;
-let crunchModeActive = false;
-let zoomCueTimeoutId = null;
 const RARITY_ODDS = {
   uncommon: 62,
   rare: 25,
@@ -212,32 +208,6 @@ function unlockAchievement(messageMeta, renderedText) {
   }
 }
 
-function shouldUseCrunchMode(actorsTight = false) {
-  return actorsTight || remainingGuesses <= 3;
-}
-
-function setCrunchMode(active) {
-  if (active === crunchModeActive) return;
-  crunchModeActive = active;
-
-  gameEl.classList.toggle("sudden-death", active);
-  document.body.classList.toggle("zoom-crunch-bg", active);
-
-  if (zoomCueTimeoutId) clearTimeout(zoomCueTimeoutId);
-
-  if (active) {
-    rangeZoomCueEl.hidden = false;
-    rangeZoomCueEl.classList.remove("zoom-cue-pop");
-    void rangeZoomCueEl.offsetWidth;
-    rangeZoomCueEl.classList.add("zoom-cue-pop");
-    return;
-  }
-
-  zoomCueTimeoutId = setTimeout(() => {
-    if (!crunchModeActive) rangeZoomCueEl.hidden = true;
-  }, 260);
-}
-
 const STAR_COUNTS = {
   uncommon: 1,
   rare: 2,
@@ -359,16 +329,12 @@ function updateRangeUI() {
   rangeWindowEl.style.setProperty("--shark-size", `${sharkSizePx.toFixed(1)}px`);
   rangeWindowEl.style.setProperty("--human-size", `${humanSizePx.toFixed(1)}px`);
   rangeWindowEl.style.setProperty("--shark-offset", `${sharkOffsetPx.toFixed(1)}px`);
-  setCrunchMode(shouldUseCrunchMode(actorsTight));
 }
 
 function updateGuessesUI() {
   remainingEl.textContent = remainingGuesses;
   const fillPct = (remainingGuesses / MAX_GUESSES) * 100;
   meterFillEl.style.width = `${fillPct}%`;
-  setCrunchMode(
-    shouldUseCrunchMode(rangeWindowEl.classList.contains("range-actors-tight"))
-  );
 }
 
 function renderHistory() {
@@ -429,7 +395,6 @@ function resetGame() {
   runStageOne();
 
   restartBtn.textContent = "Restart";
-  setCrunchMode(false);
   input.value = "";
 
   if (!achievementsVisible && revealAchievementsOnNextReplay && wasGameOver) {
