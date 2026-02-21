@@ -109,8 +109,6 @@ function revealStageElement(element) {
 }
 
 function runStageOne() {
-  if (formRevealTimeoutId) clearTimeout(formRevealTimeoutId);
-
   hideStageElement(form);
   hideStageElement(statusPanelEl);
   hideStageElement(guessesPanelEl);
@@ -261,7 +259,6 @@ function setGameOverMessage(isWin) {
 
 function setEndGameView(enabled) {
   if (enabled) {
-    if (formRevealTimeoutId) clearTimeout(formRevealTimeoutId);
     heroEl.hidden = true;
     form.hidden = true;
     statusPanelEl.hidden = true;
