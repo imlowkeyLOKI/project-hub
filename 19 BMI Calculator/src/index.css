@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
+}
+
+body {
+  font-family: var(--font-mono);
+}
