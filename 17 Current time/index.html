@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Current Time</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="time-card" aria-live="polite">
+        <h1>Current Time</h1>
+        <p class="subtitle">Your local clock updates every second.</p>
+
+        <div class="info-row">
+          <span class="label">Time Zone</span>
+          <span class="value" id="timezone"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Current Time</span>
+          <span class="value" id="time"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Current Date</span>
+          <span class="value" id="date"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Day of Week</span>
+          <span class="value" id="day"></span>
+        </div>
+        <div class="actions">
+          <button
+            id="open-timezone-modal"
+            class="change-zone-btn"
+            type="button"
+            data-micromodal-trigger="timezone-modal"
+            aria-controls="timezone-modal"
+          >
+            Change Time Zone
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal micromodal-slide" id="timezone-modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="timezone-modal-title"
+        >
+          <header class="modal__header">
+            <h2 class="modal__title" id="timezone-modal-title">
+              Select a Time Zone
+            </h2>
+            <button
+              class="modal__close"
+              aria-label="Close time zone selector"
+              data-micromodal-close
+            ></button>
+          </header>
+
+          <main class="modal__content" id="timezone-modal-content">
+            <label class="modal-label" for="timezone-select">Time Zone</label>
+            <select id="timezone-select" class="timezone-select">
+              <option value="">Use Browser Default</option>
+              <optgroup label="Americas">
+                <option value="America/New_York">New York (EST/EDT)</option>
+                <option value="America/Chicago">Chicago (CST/CDT)</option>
+                <option value="America/Denver">Denver (MST/MDT)</option>
+                <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
+                <option value="America/Anchorage">Anchorage (AKST/AKDT)</option>
+                <option value="Pacific/Honolulu">Honolulu (HST)</option>
+                <option value="America/Toronto">Toronto (EST/EDT)</option>
+                <option value="America/Vancouver">Vancouver (PST/PDT)</option>
+                <option value="America/Mexico_City">Mexico City (CST)</option>
+                <option value="America/Sao_Paulo">São Paulo (BRT)</option>
+                <option value="America/Argentina/Buenos_Aires">Buenos Aires (ART)</option>
+                <option value="America/Bogota">Bogotá (COT)</option>
+                <option value="America/Lima">Lima (PET)</option>
+                <option value="America/Santiago">Santiago (CLT)</option>
+              </optgroup>
+              <optgroup label="Europe">
+                <option value="Europe/London">London (GMT/BST)</option>
+                <option value="Europe/Paris">Paris (CET/CEST)</option>
+                <option value="Europe/Berlin">Berlin (CET/CEST)</option>
+                <option value="Europe/Madrid">Madrid (CET/CEST)</option>
+                <option value="Europe/Rome">Rome (CET/CEST)</option>
+                <option value="Europe/Amsterdam">Amsterdam (CET/CEST)</option>
+                <option value="Europe/Zurich">Zurich (CET/CEST)</option>
+                <option value="Europe/Stockholm">Stockholm (CET/CEST)</option>
+                <option value="Europe/Athens">Athens (EET/EEST)</option>
+                <option value="Europe/Moscow">Moscow (MSK)</option>
+                <option value="Europe/Istanbul">Istanbul (TRT)</option>
+              </optgroup>
+              <optgroup label="Asia">
+                <option value="Asia/Tokyo">Tokyo (JST)</option>
+                <option value="Asia/Shanghai">Shanghai (CST)</option>
+                <option value="Asia/Hong_Kong">Hong Kong (HKT)</option>
+                <option value="Asia/Seoul">Seoul (KST)</option>
+                <option value="Asia/Singapore">Singapore (SGT)</option>
+                <option value="Asia/Kolkata">Mumbai (IST)</option>
+                <option value="Asia/Dubai">Dubai (GST)</option>
+                <option value="Asia/Riyadh">Riyadh (AST)</option>
+                <option value="Asia/Bangkok">Bangkok (ICT)</option>
+                <option value="Asia/Jakarta">Jakarta (WIB)</option>
+                <option value="Asia/Karachi">Karachi (PKT)</option>
+                <option value="Asia/Taipei">Taipei (CST)</option>
+              </optgroup>
+              <optgroup label="Africa">
+                <option value="Africa/Cairo">Cairo (EET)</option>
+                <option value="Africa/Lagos">Lagos (WAT)</option>
+                <option value="Africa/Johannesburg">Johannesburg (SAST)</option>
+                <option value="Africa/Nairobi">Nairobi (EAT)</option>
+                <option value="Africa/Casablanca">Casablanca (WET)</option>
+              </optgroup>
+              <optgroup label="Oceania">
+                <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+                <option value="Australia/Melbourne">Melbourne (AEST/AEDT)</option>
+                <option value="Australia/Perth">Perth (AWST)</option>
+                <option value="Pacific/Auckland">Auckland (NZST/NZDT)</option>
+                <option value="Pacific/Fiji">Fiji (FJT)</option>
+              </optgroup>
+            </select>
+          </main>
+
+          <footer class="modal__footer">
+            <button
+              class="modal-btn modal-btn--secondary"
+              type="button"
+              data-micromodal-close
+            >
+              Cancel
+            </button>
+            <button
+              class="modal-btn modal-btn--primary"
+              id="save-timezone"
+              type="button"
+            >
+              Save Time Zone
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.19/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/micromodal@0.6.1/dist/micromodal.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shark Waters: Guess The Number</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wave-layer-c" aria-hidden="true"></div>
+    <div class="wave-layer-d" aria-hidden="true"></div>
+    <main class="game">
+      <header class="hero">
+        <p class="eyebrow">Shark Waters</p>
+        <h1>Find The Number</h1>
+        <p class="hero-goal">
+          Guess the hidden number from <strong>1 to 100</strong> in
+          <strong>10 tries</strong>.
+        </p>
+        <div class="stage-zero-hud" aria-hidden="true">
+          <span>Sharks nearby...</span>
+        </div>
+      </header>
+
+      <form id="guess-form" class="guess-form" novalidate hidden>
+        <label for="guess-input">Enter your guess</label>
+        <div class="controls">
+          <input
+            id="guess-input"
+            name="guess"
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="3"
+            autocomplete="off"
+            placeholder="Depth 1-100"
+            required
+          />
+          <button type="submit">Guess</button>
+        </div>
+        <p id="input-error" class="input-error" aria-live="polite"></p>
+      </form>
+
+      <section class="status" id="status-panel" hidden>
+        <div class="guesses-panel" id="guesses-panel" hidden>
+          <p id="feedback" class="feedback feedback-neutral">Make your first guess.</p>
+          <div class="meter-row">
+            <span>Guesses left</span>
+            <strong><span id="remaining-guesses">10</span>/10</strong>
+          </div>
+          <div class="guesses-left-progress-bar" aria-hidden="true">
+            <div id="guesses-meter-fill" class="meter-fill"></div>
+          </div>
+        </div>
+
+        <div class="range-panel" id="range-panel">
+          <div class="range-progress-shell">
+            <div class="range-progress-bar" aria-hidden="true">
+              <div id="range-window" class="range-window">
+                <span class="shark-head shark-head-left" aria-hidden="true"></span>
+                <span class="range-stickman" aria-hidden="true"></span>
+                <span class="shark-head shark-head-right" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="range-bounds" id="range-bounds">
+              <strong id="range-low">1</strong>
+              <strong id="range-high">100</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="history" id="history-panel" hidden>
+        <h2>Previous Guesses</h2>
+        <ul id="guess-history"></ul>
+        <details class="achievements" id="achievements-panel" hidden>
+          <summary>
+            Achievements
+            <span id="achievement-count" class="achievement-count">0/22</span>
+          </summary>
+          <ul id="achievement-list">
+            <li class="achievement-empty">No unlocks yet.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="game-over-message" class="game-over-message" hidden aria-live="polite"></section>
+
+      <button id="restart-btn" type="button" class="restart" hidden>Play Again</button>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+

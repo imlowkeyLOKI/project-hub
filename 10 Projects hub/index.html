@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Project Hub</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #0f1115;
+        color: #e8ebf3;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Arial, sans-serif;
+        padding: 2rem 1rem;
+      }
+
+      .wrap {
+        width: min(900px, 95vw);
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .projects {
+        list-style: none;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .card {
+        border: 1px solid #2b3242;
+        background: #171b24;
+        border-radius: 14px;
+        padding: 1rem;
+      }
+
+      .card h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .card p {
+        color: #b6bece;
+        margin-bottom: 0.7rem;
+      }
+
+      .hook {
+        color: #d7deec;
+        margin-bottom: 0.65rem;
+        font-size: 0.95rem;
+      }
+
+      .feature-list {
+        margin: 0 0 0.9rem 1.1rem;
+        color: #b6bece;
+        display: grid;
+        gap: 0.35rem;
+        font-size: 0.9rem;
+      }
+
+      .feature-list li {
+        line-height: 1.35;
+      }
+
+      .feature-list strong {
+        color: #eaf2ff;
+      }
+
+      .card a {
+        display: inline-block;
+        text-decoration: none;
+        color: #141821;
+        background: #80b6ff;
+        padding: 0.45rem 0.7rem;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      .card a:hover {
+        filter: brightness(1.06);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>My Projects</h1>
+
+      <ul id="project-list" class="projects"></ul>
+    </main>
+
+    <script>
+      const projects = [
+        {
+          title: "Static Webpage",
+          hook: "A simple website built with HTML and CSS.",
+          features: [
+            "It has multiple pages linked together.",
+            "The same styles are reused across pages.",
+            "It stays readable on different screen sizes.",
+          ],
+          href: "./11 Static Webpage/v2/index.html",
+        },
+        {
+          title: "Calculator",
+          hook: "A calculator made with JavaScript logic.",
+          features: [
+            "It follows <strong>PEMDAS</strong> so operations run in the correct order.",
+            "It supports decimal, percent, sign change, and backspace.",
+            "It saves your last answer so you can reuse it.",
+          ],
+          href: "./12 Calculator/index.html",
+        },
+        {
+          title: "Guess The Number",
+          hook: "A fun number game with friendly hints.",
+          features: [
+            "Pick a number and the game tells you: too high or too low.",
+            "You get 10 tries, so every guess feels like a mini challenge.",
+            "If you go outside the range, the game helps you get back on track.",
+          ],
+          href: "./13 Guess The Number/index.html",
+        },
+        {
+          title: "FizzBuzz",
+          hook: "The classic coding challenge brought to life in the browser.",
+          features: [
+            "Enter any number and see the full FizzBuzz sequence instantly.",
+            "It validates input so only whole numbers greater than zero are accepted.",
+            "Numbers divisible by 3 show <strong>Fizz</strong>, by 5 show <strong>Buzz</strong>, and by both show <strong>FizzBuzz</strong>.",
+          ],
+          href: "./14 FizzBuzz/index.html",
+        },
+        {
+          title: "Tic Tac Toe",
+          hook: "A two-player Tic Tac Toe game on a classic 3x3 board.",
+          features: [
+            "Two players take turns placing <strong>X</strong> and <strong>O</strong> on the board.",
+            "It detects wins and draws automatically and announces the result.",
+            "A restart button lets you quickly start a new round.",
+          ],
+          href: "./15 Tic Tac Toe/index.html",
+        },
+        {
+          title: "Weather App",
+          hook: "Search any city to see live weather and a 3-day forecast.",
+          features: [
+            "Shows current temperature, feels-like, humidity, wind, and pressure.",
+            "Displays the daily high and low for today at a glance.",
+            "Includes a <strong>3-day forecast</strong> with highs and lows for upcoming days.",
+          ],
+          href: "./16 Weather App/index.html",
+        },
+        {
+          title: "Current Time",
+          hook: "A live clock that updates every second with timezone support.",
+          features: [
+            "Displays the current time, date, and day of the week.",
+            "Change your <strong>time zone</strong> with a modal picker.",
+            "The clock updates live every second without refreshing the page.",
+          ],
+          href: "./17 Current time/index.html",
+        },
+      ];
+
+      const list = document.getElementById("project-list");
+
+      projects.forEach((project) => {
+        const li = document.createElement("li");
+        li.className = "card";
+        const featuresHtml = project.features
+          .map((feature) => `<li>${feature}</li>`)
+          .join("");
+        li.innerHTML = `
+          <h2>${project.title}</h2>
+          <p class="hook">${project.hook}</p>
+          <ul class="feature-list">${featuresHtml}</ul>
+          <a href="${project.href}">Open Project</a>
+        `;
+        list.appendChild(li);
+      });
+    </script>
+  </body>
+</html>
